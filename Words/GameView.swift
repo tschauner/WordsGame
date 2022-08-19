@@ -45,15 +45,9 @@ struct GameView<T: GameProtocol>: View {
         switch section {
         case .navigation:
             GameNavigationView {
-                Image(name: .close)
-                    .font(.blackRounded())
-                    .foregroundColor(.black)
-                    .button(action: viewModel.quit)
+                NavigationButton(image: .close, action: viewModel.quit)
             } rightButton: {
-                Image(name: .retry)
-                    .font(.blackRounded())
-                    .foregroundColor(.black)
-                    .button(action: viewModel.reset)
+                NavigationButton(image: .retry, action: viewModel.reset)
             }
 
         case .stats:

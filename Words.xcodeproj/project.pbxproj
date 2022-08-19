@@ -32,6 +32,7 @@
 		6FC5E03C28A93AF7007CC460 /* ChooseLanguageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC5E03B28A93AF7007CC460 /* ChooseLanguageView.swift */; };
 		6FC5E03E28A93BA2007CC460 /* GameSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC5E03D28A93BA2007CC460 /* GameSection.swift */; };
 		6FF7BC5C28B003E300728F75 /* MockViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF7BC5B28B003E300728F75 /* MockViewModel.swift */; };
+		6FF7BC5E28B0062600728F75 /* NavigationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF7BC5D28B0062600728F75 /* NavigationButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +89,7 @@
 		6FC5E03B28A93AF7007CC460 /* ChooseLanguageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseLanguageView.swift; sourceTree = "<group>"; };
 		6FC5E03D28A93BA2007CC460 /* GameSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSection.swift; sourceTree = "<group>"; };
 		6FF7BC5B28B003E300728F75 /* MockViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockViewModel.swift; sourceTree = "<group>"; };
+		6FF7BC5D28B0062600728F75 /* NavigationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +153,7 @@
 				6FC5E03B28A93AF7007CC460 /* ChooseLanguageView.swift */,
 				6FC5E03728A9327F007CC460 /* GameNavigationView.swift */,
 				6FC5E03928A93817007CC460 /* GameImage.swift */,
+				6FF7BC5D28B0062600728F75 /* NavigationButton.swift */,
 				6F62CC3D28A6F08100BEB591 /* AlertView.swift */,
 				6F62CC2F28A580FE00BEB591 /* GameCanvas.swift */,
 				6F62CC2D28A5768D00BEB591 /* GameControlsView.swift */,
@@ -411,6 +414,7 @@
 				6F76BFFE28A956390072765B /* Language.swift in Sources */,
 				6F61FFD028A54FED00DFF43F /* GameView.swift in Sources */,
 				6F62CC3028A580FE00BEB591 /* GameCanvas.swift in Sources */,
+				6FF7BC5E28B0062600728F75 /* NavigationButton.swift in Sources */,
 				6F76BFFC28A9490E0072765B /* GameStatsView.swift in Sources */,
 				6F61FFCE28A54FED00DFF43F /* WordsApp.swift in Sources */,
 				6F61000128A551C500DFF43F /* GameViewModel.swift in Sources */,
