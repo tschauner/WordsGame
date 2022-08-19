@@ -16,12 +16,12 @@ struct GameView<T: GameProtocol>: View {
             ForEach(GameSection.allCases, id: \.self) { section in
                 viewForSection(section)
                     .frame(maxWidth: .infinity)
-                    .isVisible(section.isVisible(viewModel: viewModel))
+                    .isVisible(viewModel.isVisible(section: section))
             }
         }
         .overlay(
             AlertView(content: {
-                ChooseLanguageView(languages: Language.allCases) { language in
+                ChooseLanguageView(languages: viewModel.languages) { language in
                     viewModel.setup(withConfig: language)
                 }
             }, title: "Please choose 🤓")

@@ -12,15 +12,4 @@ enum GameSection: CaseIterable {
     case stats
     case canvas
     case controls
-    
-    func isVisible(viewModel: AnyObject) -> Bool {
-        guard let viewModel = viewModel as? GameViewModel else { return false }
-        
-        switch self {
-        case .navigation, .stats, .controls:
-            return viewModel.isGameReady
-        default:
-            return true
-        }
-    }
 }

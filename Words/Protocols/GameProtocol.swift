@@ -1,18 +1,14 @@
 //
-//  GameViewModel.swift
+//  GameProtocol.swift
 //  Words
 //
-//  Created by Philipp Tschauner on 11.08.22.
+//  Created by Philipp Tschauner on 19.08.22.
 //
 
 import Foundation
-import SwiftUI
+import UIKit
 import Combine
-
-enum GameAlert {
-    case start
-    case end
-}
+import SwiftUI
 
 protocol GameProtocol: ObservableObject {
     var timerCancellable: Cancellable? { get set }
@@ -27,6 +23,7 @@ protocol GameProtocol: ObservableObject {
     var showGameAlert: Bool { get set }
     var timer: Timer.TimerPublisher { get set }
     var animateText: Bool { get set }
+    var languages: [GameConfiguration] { get set }
 }
 
 extension GameProtocol {
@@ -120,6 +117,15 @@ extension GameProtocol {
             withAnimation(.linear(duration: Double(config?.maxTime ?? 5))) {
                 self.setMaxAnimationPosition()
             }
+        }
+    }
+    
+    func isVisible(section: GameSection) -> Bool {
+        switch section {
+        case .navigation, .stats, .controls:
+            return isGameReady
+        default:
+            return true
         }
     }
     
@@ -228,22 +234,4 @@ extension GameProtocol {
             self.reset()
         }
     }
-}
-
-class GameViewModel: GameProtocol {
-
-    @Published var words: [WordPair] = []
-    @Published var currentIndex: Int = 0
-    @Published var randomIndex: Int = 0
-    @Published var correctAttempts: Int = 0
-    @Published var wrongAttempts: Int = 0
-    @Published var timeRemaining: Int = 0
-    @Published var animateText: Bool = false
-    @Published var currentTextPosition: CGFloat = -300
-    @Published var alert: GameAlert?
-    @Published var showGameAlert: Bool = false
-    
-    var timerCancellable: Cancellable?
-    var config: GameConfiguration?
-    var timer: Timer.TimerPublisher = Timer.publish(every: 1, on: .main, in: .common)
 }

@@ -11,7 +11,7 @@ import SwiftUI
 struct WordsApp: App {
     var body: some Scene {
         WindowGroup {
-            GameView(viewModel: GameViewModel())
+            GameView(viewModel: LanguageViewModel())
         }
     }
 }
