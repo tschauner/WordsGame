@@ -19,12 +19,12 @@ protocol GameProtocol: ObservableObject {
     var wrongAttempts: Int { get set }
     var timeRemaining: Int { get set }
     var words: [WordPair] { get set }
-    var config: GameConfiguration? { get set }
+    var config: GameConfiguration { get set }
     var currentTextPosition: CGFloat { get set }
     var showGameAlert: Bool { get set }
     var timer: Timer.TimerPublisher { get set }
     var animateText: Bool { get set }
-    var languages: [GameConfiguration] { get set }
+    init(config: GameConfiguration)
     
     func loadWords()
     func setMinAnimationPosition()
@@ -52,7 +52,7 @@ protocol GameProtocol: ObservableObject {
 extension GameProtocol {
     
     var alertMessage: String {
-        config?.alertMessage(isSuccess: isSuccess) ?? "OOPS\nSomething wen't wrong"
+        config.alertMessage(isSuccess: isSuccess)
     }
     
     var currentOriginal: String? {
@@ -72,7 +72,7 @@ extension GameProtocol {
     private var screenHeight: CGFloat { UIScreen.main.bounds.height }
     
     var shouldFinishGame: Bool {
-        correctAttempts == config?.correctAttempts || wrongAttempts == config?.wrongAttempts
+        correctAttempts == config.correctAttempts || wrongAttempts == config.wrongAttempts
     }
     
     private var currentWord: WordPair? {
@@ -81,12 +81,12 @@ extension GameProtocol {
     }
     
     private var isSuccess: Bool {
-        correctAttempts == config?.correctAttempts
+        correctAttempts == config.correctAttempts
     }
     
     func loadWords() {
-        guard let words: [WordPair] = config?.model else {
-            assertionFailure("config file \(String(describing: config?.fileName)) is not available")
+        guard let words: [WordPair] = config.getModel() else {
+            assertionFailure("config file \(String(describing: config.fileName)) is not available")
             return
         }
         self.words = words
@@ -137,7 +137,7 @@ extension GameProtocol {
     
     func animateMaxPosition() {
         DispatchQueue.main.async { [unowned self] in
-            withAnimation(.linear(duration: Double(config?.maxTime ?? 5))) {
+            withAnimation(.linear(duration: Double(config.maxTime))) {
                 self.setMaxAnimationPosition()
             }
         }
@@ -209,7 +209,7 @@ extension GameProtocol {
     }
     
     func resetTimer() {
-        timeRemaining = config?.maxTime ?? 5
+        timeRemaining = config.maxTime ?? 5
         startTimer()
     }
     
@@ -232,13 +232,13 @@ extension GameProtocol {
     func setTimer() {
         guard !shouldFinishGame else { return }
         
-        if timeRemaining == config?.maxTime ?? 5 {
+        if timeRemaining == config.maxTime {
             animateText = true
         }
         
         timeRemaining -= 1
         if timeRemaining == 0 {
-            timeRemaining = config?.maxTime ?? 5
+            timeRemaining = config.maxTime
             animateText = false
             skip()
         }

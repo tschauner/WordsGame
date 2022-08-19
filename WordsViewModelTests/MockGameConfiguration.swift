@@ -8,14 +8,12 @@
 
 @testable import Words
 
-enum MockGameConfiguration: CaseIterable, GameConfiguration {
-    case dummy
-    
+struct MockGameConfiguration: GameConfiguration {
     var fileName: String { "dummy.json" }
     var description: String { "Dummy" }
-    var model: [WordPair]? { nil }
-    var isAvailable: Bool {
-        model != nil
-    }
     
+    func getModel() -> [WordPair]? {
+        let model: [EnEsModel]? = DummyData.load(fileName)
+        return model
+    }
 }

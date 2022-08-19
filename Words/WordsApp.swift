@@ -9,9 +9,10 @@ import SwiftUI
 
 @main
 struct WordsApp: App {
+    
     var body: some Scene {
         WindowGroup {
-            GameView(viewModel: LanguageViewModel())
+            GameView(viewModel: LanguageViewModel(config: SpanishEN()))
         }
     }
 }

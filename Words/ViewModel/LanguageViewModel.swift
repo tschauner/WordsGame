@@ -21,8 +21,12 @@ class LanguageViewModel: GameProtocol {
     @Published var currentTextPosition: CGFloat = -300
     @Published var showGameAlert: Bool = false
     
-    var languages: [GameConfiguration] = Language.allCases
     var timerCancellable: Cancellable?
-    var config: GameConfiguration?
+    var config: GameConfiguration
     var timer: Timer.TimerPublisher = Timer.publish(every: 1, on: .main, in: .common)
+    
+    required init(config: GameConfiguration) {
+        self.config = config
+        setup(withConfig: config)
+    }
 }

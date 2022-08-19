@@ -10,11 +10,11 @@ import Foundation
 protocol GameConfiguration {
     var fileName: String { get }
     var description: String { get }
-    var model: [WordPair]? { get }
     var maxTime: Int { get }
     var correctAttempts: Int { get }
     var wrongAttempts: Int { get }
-    var isAvailable: Bool { get }
+    
+    func getModel() -> [WordPair]?
 }
 
 extension GameConfiguration {
