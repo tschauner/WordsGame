@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ChooseLanguageView: View {
     
-    var languages: [GameConfiguration] = Language.allCases
+    var languages: [GameConfiguration]
     let action: (GameConfiguration) -> Void
     
     var body: some View {

@@ -27,13 +27,6 @@ protocol GameProtocol: ObservableObject {
     var showGameAlert: Bool { get set }
     var timer: Timer.TimerPublisher { get set }
     var animateText: Bool { get set }
-    
-    func setup(withConfig config: GameConfiguration)
-    func choiceSelected(_ choice: Choice)
-    func reset()
-    func fail()
-    func skip()
-    func loadWords()
 }
 
 extension GameProtocol {
@@ -56,18 +49,18 @@ extension GameProtocol {
         words.isEmpty == false
     }
     
-    var screenHeight: CGFloat { UIScreen.main.bounds.height }
+    private var screenHeight: CGFloat { UIScreen.main.bounds.height }
     
     var shouldFinishGame: Bool {
         correctAttempts == config?.correctAttempts || wrongAttempts == config?.wrongAttempts
     }
     
-    var currentWord: WordPair? {
+    private var currentWord: WordPair? {
         guard currentIndex <= words.count - 1 else { return nil }
         return words[currentIndex]
     }
     
-    var isSuccess: Bool {
+    private var isSuccess: Bool {
         correctAttempts == config?.correctAttempts
     }
     
@@ -87,7 +80,7 @@ extension GameProtocol {
         currentTextPosition = screenHeight/2
     }
     
-    func resetAnimation() {
+    private func resetAnimation() {
         setMinAnimationPosition()
         animateMaxPosition()
     }
@@ -100,7 +93,7 @@ extension GameProtocol {
         }
     }
     
-    func evaluate(_ choice: Choice) {
+    private func evaluate(_ choice: Choice) {
         if isCorrect(choice: choice) {
             correctAttempts += 1
         } else {
@@ -108,7 +101,7 @@ extension GameProtocol {
         }
     }
     
-    func increaseIndex() {
+    private func increaseIndex() {
         if currentIndex == words.count - 1 {
             currentIndex = 0
         } else {
@@ -117,7 +110,7 @@ extension GameProtocol {
     }
     
     /// Returns a random integer between currentIndex and currentIndex + 3 = 25%
-    var randomInteger: Int {
+    private var randomInteger: Int {
         guard currentIndex + 3 <= words.count - 1 else { return 0 }
         return Int.random(in: currentIndex...currentIndex + 3)
     }
@@ -130,7 +123,7 @@ extension GameProtocol {
         }
     }
     
-    func isCorrect(choice: Choice) -> Bool {
+    private func isCorrect(choice: Choice) -> Bool {
         switch choice {
         case .correct:
             return currentWord?.translation == currentRandomTranslation
@@ -146,7 +139,7 @@ extension GameProtocol {
     
     // MARK: GAME ACTIONS
     
-    func setup() {
+    private func setup() {
         loadWords()
         reset()
         diceIndex()
@@ -171,27 +164,27 @@ extension GameProtocol {
         animateText(false)
     }
     
-    func diceIndex() {
+    private func diceIndex() {
         randomIndex = randomInteger
         increaseIndex()
     }
     
-    func startTimer() {
+    private func startTimer() {
         timer = Timer.publish(every: 1, on: .main, in: .common)
         timerCancellable = timer.connect()
     }
     
-    func stopTimer() {
+    private func stopTimer() {
         timerCancellable?.cancel()
         timer.connect().cancel()
     }
     
-    func resetTimer() {
+    private func resetTimer() {
         timeRemaining = config?.maxTime ?? 5
         startTimer()
     }
     
-    func checkIfGameFinished() {
+    private func checkIfGameFinished() {
         if shouldFinishGame {
             stopTimer()
             showGameAlert = true

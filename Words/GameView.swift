@@ -21,7 +21,7 @@ struct GameView<T: GameProtocol>: View {
         }
         .overlay(
             AlertView(content: {
-                ChooseLanguageView() { language in
+                ChooseLanguageView(languages: Language.allCases) { language in
                     viewModel.setup(withConfig: language)
                 }
             }, title: "Please choose 🤓")
