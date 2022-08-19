@@ -7,23 +7,18 @@
 
 import SwiftUI
 
-struct GameNavigationView<T: GameProtocol>: View {
+struct GameNavigationView<LeftButton: View, RightButton: View>: View {
     
-    @EnvironmentObject var viewModel: T
+    let leftButton: () -> LeftButton
+    let rightButton: () -> RightButton
     
     var body: some View {
         HStack {
-            Image(name: .close)
-                .font(.blackRounded())
-                .foregroundColor(.black)
-                .button(action: viewModel.quit)
+            leftButton()
             
             Spacer()
             
-            Image(name: .retry)
-                .font(.blackRounded())
-                .foregroundColor(.black)
-                .button(action: viewModel.reset)
+            rightButton()
         }
         .frame(height: 40)
     }

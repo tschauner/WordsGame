@@ -50,15 +50,15 @@ struct ChoiceButton: View {
     }
 }
 
-struct GameControlsView<T: GameProtocol>: View {
+struct GameControlsView: View {
     
-    @EnvironmentObject var viewModel: T
+    var choiceSelected: (Choice) -> Void
     
     var body: some View {
         HStack {
             ForEach(Choice.allCases, id: \.self) { choice in
                 ChoiceButton(choice: choice) {
-                    viewModel.choiceSelected(choice)
+                    choiceSelected(choice)
                 }
             }
         }

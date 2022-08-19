@@ -7,21 +7,25 @@
 
 import SwiftUI
 
-struct GameStatsView<T: GameProtocol>: View {
-    
-    @EnvironmentObject var viewModel: T
+struct GameStatsView: View {
+
+    var wrongAttempts: Int
+    var correctAttempts: Int
+    var timeRemaining: Int
     
     var body: some View {
         HStack {
-            Text("💩 \(viewModel.wrongAttempts)")
+            Text("💩 \(wrongAttempts)")
                 .frame(maxWidth: .infinity, alignment: .leading)
             Spacer()
-            TimerView<T>()
+            Text("⏱ \(timeRemaining)")
+                .font(.blackRounded(size: 26))
+                .multilineTextAlignment(.center)
+
             Spacer()
-            Text("\(viewModel.correctAttempts) 🏆")
+            Text("\(correctAttempts) 🏆")
                 .frame(maxWidth: .infinity, alignment: .trailing)
         }
-        .environmentObject(viewModel)
         .font(.blackRounded())
         .padding(.vertical, 5)
         .padding(.horizontal, 10)

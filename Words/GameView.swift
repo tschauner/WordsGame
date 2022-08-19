@@ -16,7 +16,6 @@ struct GameView<T: GameProtocol>: View {
             ForEach(GameSection.allCases, id: \.self) { section in
                 viewForSection(section)
                     .frame(maxWidth: .infinity)
-                    .environmentObject(viewModel)
                     .isVisible(section.isVisible(viewModel: viewModel))
             }
         }
@@ -31,6 +30,12 @@ struct GameView<T: GameProtocol>: View {
         .alert(viewModel.alertMessage, isPresented: $viewModel.showGameAlert) {
             viewModel.gameAlert
         }
+        .onReceive(viewModel.timer) { _ in
+            viewModel.setTimer()
+        }
+        .onChange(of: viewModel.animateText) { shouldAnimate in
+            viewModel.animateText(shouldAnimate)
+        }
         .padding(25)
         .background(Color.lightOrange.ignoresSafeArea())
     }
@@ -39,15 +44,32 @@ struct GameView<T: GameProtocol>: View {
     func viewForSection(_ section: GameSection) -> some View {
         switch section {
         case .navigation:
-            GameNavigationView<T>()
+            GameNavigationView {
+                Image(name: .close)
+                    .font(.blackRounded())
+                    .foregroundColor(.black)
+                    .button(action: viewModel.quit)
+            } rightButton: {
+                Image(name: .retry)
+                    .font(.blackRounded())
+                    .foregroundColor(.black)
+                    .button(action: viewModel.reset)
+            }
+
         case .stats:
-            GameStatsView<T>()
+            GameStatsView(wrongAttempts: viewModel.wrongAttempts,
+                          correctAttempts: viewModel.correctAttempts,
+                          timeRemaining: viewModel.timeRemaining)
                 .zIndex(1)
                 .padding(.top, 15)
         case .canvas:
-            GameCanvas<T>()
+            GameCanvas(currentOriginal: viewModel.currentOriginal,
+                       currentTranslation: viewModel.currentRandomTranslation,
+                       currentTextPosition: viewModel.currentTextPosition)
         case .controls:
-            GameControlsView<T>()
+            GameControlsView { choice in
+                viewModel.choiceSelected(choice)
+            }
         }
     }
 }
