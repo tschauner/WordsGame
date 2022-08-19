@@ -20,10 +20,10 @@ class MockViewModel: GameProtocol {
     @Published var timeRemaining: Int = 0
     @Published var animateText: Bool = false
     @Published var currentTextPosition: CGFloat = -300
-    @Published var alert: GameAlert?
     @Published var showGameAlert: Bool = false
     
     var timerCancellable: Cancellable?
     var config: GameConfiguration?
+    var languages: [GameConfiguration] = MockGameConfiguration.allCases
     var timer: Timer.TimerPublisher = Timer.publish(every: 1, on: .main, in: .common)
 }

@@ -8,7 +8,7 @@
 
 @testable import Words
 
-enum MockGameConfiguration: GameConfiguration {
+enum MockGameConfiguration: CaseIterable, GameConfiguration {
     case dummy
     
     var fileName: String { "dummy.json" }
