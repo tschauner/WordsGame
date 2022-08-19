@@ -10,7 +10,7 @@ import XCTest
 
 class GameViewModelTests: XCTestCase {
     
-    var viewModel: GameViewModel!
+    var viewModel: MockViewModel!
 
     override func setUp() {
         viewModel = .init()
