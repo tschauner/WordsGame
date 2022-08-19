@@ -1,6 +1,6 @@
 //
 //  MockLanguage.swift
-//  WordsViewModelTests
+//  GameViewModelTests
 //
 //  Created by Philipp Tschauner on 15.08.22.
 //

@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct GameView: View {
+struct GameView<T: GameProtocol>: View {
     
-    @StateObject var viewModel = WordsViewModel()
+    @StateObject var viewModel: T
     
     var body: some View {
         VStack(spacing: 0) {
@@ -39,15 +39,15 @@ struct GameView: View {
     func viewForSection(_ section: GameSection) -> some View {
         switch section {
         case .navigation:
-            GameNavigationView()
+            GameNavigationView<T>()
         case .stats:
-            GameStatsView()
+            GameStatsView<T>()
                 .zIndex(1)
                 .padding(.top, 15)
         case .canvas:
-            GameCanvas()
+            GameCanvas<T>()
         case .controls:
-            GameControlsView()
+            GameControlsView<T>()
         }
     }
 }

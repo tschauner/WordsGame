@@ -50,9 +50,9 @@ struct ChoiceButton: View {
     }
 }
 
-struct GameControlsView: View {
+struct GameControlsView<T: GameProtocol>: View {
     
-    @EnvironmentObject var viewModel: WordsViewModel
+    @EnvironmentObject var viewModel: T
     
     var body: some View {
         HStack {

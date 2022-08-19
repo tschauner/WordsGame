@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct GameCanvas: View {
+struct GameCanvas<T: GameProtocol>: View {
     
-    @EnvironmentObject var viewModel: WordsViewModel
+    @EnvironmentObject var viewModel: T
     
     var body: some View {
         if let original = viewModel.currentOriginal,
@@ -20,7 +20,7 @@ struct GameCanvas: View {
                     .font(.blackRounded(size: 36))
                     .multilineTextAlignment(.center)
                     .offset(y: viewModel.currentTextPosition)
-                    .opacity(viewModel.shouldHideAnimation ? 0 : 1)
+//                    .opacity(viewModel.shouldHideAnimation ? 0 : 1)
                 Text(translation)
                     .font(.blackRounded(size: 30))
                     .foregroundColor(.pink)

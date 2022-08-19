@@ -1,6 +1,6 @@
 //
-//  WordsViewModelTests.swift
-//  WordsViewModelTests
+//  GameViewModelTests.swift
+//  GameViewModelTests
 //
 //  Created by Philipp Tschauner on 15.08.22.
 //
@@ -8,9 +8,9 @@
 import XCTest
 @testable import Words
 
-class WordsViewModelTests: XCTestCase {
+class GameViewModelTests: XCTestCase {
     
-    var viewModel: WordsViewModel!
+    var viewModel: GameViewModel!
 
     override func setUp() {
         viewModel = .init()

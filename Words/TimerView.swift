@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct TimerView: View {
+struct TimerView<T: GameProtocol>: View {
     
-    @EnvironmentObject var viewModel: WordsViewModel
+    @EnvironmentObject var viewModel: T
     
     @State var animate: Bool = false
     
