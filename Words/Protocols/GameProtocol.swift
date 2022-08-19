@@ -12,6 +12,7 @@ import SwiftUI
 
 protocol GameProtocol: ObservableObject {
     var timerCancellable: Cancellable? { get set }
+    var randomInteger: Int { get }
     var currentIndex: Int { get set }
     var randomIndex: Int { get set }
     var correctAttempts: Int { get set }
@@ -24,6 +25,28 @@ protocol GameProtocol: ObservableObject {
     var timer: Timer.TimerPublisher { get set }
     var animateText: Bool { get set }
     var languages: [GameConfiguration] { get set }
+    
+    func loadWords()
+    func setMinAnimationPosition()
+    func setMaxAnimationPosition()
+    func resetAnimation()
+    func animateText(_ animate: Bool)
+    func animateMaxPosition()
+    func isVisible(section: GameSection) -> Bool
+    func isCorrect(choice: Choice) -> Bool
+    func diceIndex()
+    func setup(withConfig config: GameConfiguration)
+    func setup()
+    func reset()
+    func fail()
+    func skip()
+    func quit()
+    func setTimer()
+    func startTimer()
+    func stopTimer()
+    func resetTimer()
+    func checkIfGameFinished()
+    func choiceSelected(_ choice: Choice)
 }
 
 extension GameProtocol {
@@ -73,11 +96,11 @@ extension GameProtocol {
         currentTextPosition = -screenHeight/2
     }
     
-    private func setMaxAnimationPosition() {
+    func setMaxAnimationPosition() {
         currentTextPosition = screenHeight/2
     }
     
-    private func resetAnimation() {
+    func resetAnimation() {
         setMinAnimationPosition()
         animateMaxPosition()
     }
@@ -107,12 +130,12 @@ extension GameProtocol {
     }
     
     /// Returns a random integer between currentIndex and currentIndex + 3 = 25%
-    private var randomInteger: Int {
+    var randomInteger: Int {
         guard currentIndex + 3 <= words.count - 1 else { return 0 }
         return Int.random(in: currentIndex...currentIndex + 3)
     }
     
-    private func animateMaxPosition() {
+    func animateMaxPosition() {
         DispatchQueue.main.async { [unowned self] in
             withAnimation(.linear(duration: Double(config?.maxTime ?? 5))) {
                 self.setMaxAnimationPosition()
@@ -129,7 +152,7 @@ extension GameProtocol {
         }
     }
     
-    private func isCorrect(choice: Choice) -> Bool {
+    func isCorrect(choice: Choice) -> Bool {
         switch choice {
         case .correct:
             return currentWord?.translation == currentRandomTranslation
@@ -145,7 +168,7 @@ extension GameProtocol {
     
     // MARK: GAME ACTIONS
     
-    private func setup() {
+    func setup() {
         loadWords()
         reset()
         diceIndex()
@@ -170,27 +193,27 @@ extension GameProtocol {
         animateText(false)
     }
     
-    private func diceIndex() {
+    func diceIndex() {
         randomIndex = randomInteger
         increaseIndex()
     }
     
-    private func startTimer() {
+    func startTimer() {
         timer = Timer.publish(every: 1, on: .main, in: .common)
         timerCancellable = timer.connect()
     }
     
-    private func stopTimer() {
+    func stopTimer() {
         timerCancellable?.cancel()
         timer.connect().cancel()
     }
     
-    private func resetTimer() {
+    func resetTimer() {
         timeRemaining = config?.maxTime ?? 5
         startTimer()
     }
     
-    private func checkIfGameFinished() {
+    func checkIfGameFinished() {
         if shouldFinishGame {
             stopTimer()
             showGameAlert = true
@@ -209,13 +232,13 @@ extension GameProtocol {
     func setTimer() {
         guard !shouldFinishGame else { return }
         
-        if timeRemaining == 5 {
+        if timeRemaining == config?.maxTime ?? 5 {
             animateText = true
         }
         
         timeRemaining -= 1
         if timeRemaining == 0 {
-            timeRemaining = 5
+            timeRemaining = config?.maxTime ?? 5
             animateText = false
             skip()
         }
