@@ -1,5 +1,5 @@
 //
-//  Language.swift
+//  SpanishEN.swift
 //  Words
 //
 //  Created by Philipp Tschauner on 14.08.22.

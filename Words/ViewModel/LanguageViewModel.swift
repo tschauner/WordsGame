@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 import Combine
 
-class LanguageViewModel: GameProtocol {
+class LanguageViewModel: GameViewModelProtocol {
 
     @Published var words: [WordPair] = []
     @Published var currentIndex: Int = 0

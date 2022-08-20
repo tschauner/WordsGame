@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct GameView<T: GameProtocol>: View {
+struct GameView<T: GameViewModelProtocol>: View {
     
     @StateObject var viewModel: T
     

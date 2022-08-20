@@ -10,7 +10,7 @@ import UIKit
 import Combine
 @testable import Words
 
-class MockViewModel: GameProtocol {
+class MockViewModel: GameViewModelProtocol {
     
     @Published var words: [WordPair] = []
     @Published var currentIndex: Int = 0

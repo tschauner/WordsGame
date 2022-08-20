@@ -15,5 +15,4 @@ struct EnEsModel: Codable {
 extension EnEsModel: WordPair {
     var original: String { text_eng }
     var translation: String { text_spa }
-    var language: String { "EN-ES" }
 }
