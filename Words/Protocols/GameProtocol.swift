@@ -209,7 +209,7 @@ extension GameProtocol {
     }
     
     func resetTimer() {
-        timeRemaining = config.maxTime ?? 5
+        timeRemaining = config.maxTime
         startTimer()
     }
     

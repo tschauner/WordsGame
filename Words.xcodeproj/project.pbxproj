@@ -21,7 +21,7 @@
 		6F62CC3E28A6F08100BEB591 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F62CC3D28A6F08100BEB591 /* AlertView.swift */; };
 		6F62CC4028A6F16F00BEB591 /* WordPairProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F62CC3F28A6F16F00BEB591 /* WordPairProtocol.swift */; };
 		6F76BFFC28A9490E0072765B /* GameStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F76BFFB28A9490E0072765B /* GameStatsView.swift */; };
-		6F76BFFE28A956390072765B /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F76BFFD28A956390072765B /* Language.swift */; };
+		6F76BFFE28A956390072765B /* SpanishEN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F76BFFD28A956390072765B /* SpanishEN.swift */; };
 		6F76C00128A9567D0072765B /* ViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F76C00028A9567D0072765B /* ViewModifier.swift */; };
 		6F76C00328A97CD80072765B /* Extension+Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F76C00228A97CD80072765B /* Extension+Font.swift */; };
 		6F76C00528A97CF50072765B /* Extension+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F76C00428A97CF50072765B /* Extension+Color.swift */; };
@@ -79,7 +79,7 @@
 		6F62CC3D28A6F08100BEB591 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		6F62CC3F28A6F16F00BEB591 /* WordPairProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordPairProtocol.swift; sourceTree = "<group>"; };
 		6F76BFFB28A9490E0072765B /* GameStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStatsView.swift; sourceTree = "<group>"; };
-		6F76BFFD28A956390072765B /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
+		6F76BFFD28A956390072765B /* SpanishEN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpanishEN.swift; sourceTree = "<group>"; };
 		6F76C00028A9567D0072765B /* ViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModifier.swift; sourceTree = "<group>"; };
 		6F76C00228A97CD80072765B /* Extension+Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Font.swift"; sourceTree = "<group>"; };
 		6F76C00428A97CF50072765B /* Extension+Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Color.swift"; sourceTree = "<group>"; };
@@ -162,7 +162,7 @@
 				6F62CC2F28A580FE00BEB591 /* GameCanvas.swift */,
 				6F62CC2D28A5768D00BEB591 /* GameControlsView.swift */,
 				6F76BFFB28A9490E0072765B /* GameStatsView.swift */,
-				6F76BFFD28A956390072765B /* Language.swift */,
+				6F76BFFD28A956390072765B /* SpanishEN.swift */,
 				6F76BFFF28A956620072765B /* Extensions */,
 				6F62CC4228A7923500BEB591 /* Protocols */,
 				6F62CC4128A6F19F00BEB591 /* ViewModel */,
@@ -417,7 +417,7 @@
 				6F76C00528A97CF50072765B /* Extension+Color.swift in Sources */,
 				6F61FFF828A550C800DFF43F /* DummyData.swift in Sources */,
 				6F62CC3628A6434D00BEB591 /* Extension+View.swift in Sources */,
-				6F76BFFE28A956390072765B /* Language.swift in Sources */,
+				6F76BFFE28A956390072765B /* SpanishEN.swift in Sources */,
 				6F61FFD028A54FED00DFF43F /* GameView.swift in Sources */,
 				6F62CC3028A580FE00BEB591 /* GameCanvas.swift in Sources */,
 				6FF7BC5E28B0062600728F75 /* NavigationButton.swift in Sources */,

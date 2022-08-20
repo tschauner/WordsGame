@@ -19,14 +19,6 @@ struct GameView<T: GameProtocol>: View {
                     .isVisible(viewModel.isVisible(section: section))
             }
         }
-//        .overlay(
-//            AlertView(content: {
-//                ChooseLanguageView(languages: viewModel.languages) { language in
-//                    viewModel.setup(withConfig: language)
-//                }
-//            }, title: "Please choose 🤓")
-//            .isVisible(!viewModel.isGameReady)
-//        )
         .alert(viewModel.alertMessage, isPresented: $viewModel.showGameAlert) {
             viewModel.gameAlert
         }

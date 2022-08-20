@@ -15,9 +15,7 @@ struct GameNavigationView<LeftButton: View, RightButton: View>: View {
     var body: some View {
         HStack {
             leftButton()
-            
             Spacer()
-            
             rightButton()
         }
         .frame(height: 40)
