@@ -9,10 +9,12 @@
 @testable import Words
 
 struct MockGameConfiguration: GameConfiguration {
-    var fileName: String { "dummy.json" }
+    var fileName: String { "words.json" }
     var description: String { "Dummy" }
+    var correctAttempts: Int { 1 }
+    var wrongAttempts: Int { 100 }
     
-    func getModel() -> [WordPair]? {
+    var model: [WordPair]? {
         let model: [EnEsModel]? = DummyData.load(fileName)
         return model
     }

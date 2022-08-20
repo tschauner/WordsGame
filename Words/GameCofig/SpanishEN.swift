@@ -11,7 +11,7 @@ struct SpanishEN: GameConfiguration {
     var fileName: String { "words.json" }
     var description: String { "EN-ES" }
     
-    func getModel() -> [WordPair]? {
+    var model: [WordPair]? {
         let model: [EnEsModel]? = DummyData.load(fileName)
         return model
     }

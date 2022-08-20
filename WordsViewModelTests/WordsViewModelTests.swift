@@ -13,7 +13,7 @@ class GameViewModelTests: XCTestCase {
     var viewModel: MockViewModel!
 
     override func setUp() {
-        viewModel = .init(config: SpanishEN())
+        viewModel = .init(config: MockGameConfiguration())
     }
     
     func testSetupWithConfigLoadWordsSuccessfulTrue() {
@@ -32,7 +32,7 @@ class GameViewModelTests: XCTestCase {
     }
     
     func testMaxWrongAttemptsIterateEndsFinishTrue() {
-        let language = SpanishEN()
+        let language = MockGameConfiguration()
         for _ in (0..<language.wrongAttempts) {
             viewModel.skip()
         }
@@ -50,6 +50,6 @@ class GameViewModelTests: XCTestCase {
     
     func testMockGameConfigurationModelAvailableFail() {
         let config = MockGameConfiguration()
-        XCTAssertFalse(config.getModel() != nil)
+        XCTAssertFalse(config.model == nil)
     }
 }

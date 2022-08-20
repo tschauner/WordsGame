@@ -13,8 +13,7 @@ protocol GameConfiguration {
     var maxTime: Int { get }
     var correctAttempts: Int { get }
     var wrongAttempts: Int { get }
-    
-    func getModel() -> [WordPair]?
+    var model: [WordPair]? { get }
 }
 
 extension GameConfiguration {
@@ -24,7 +23,7 @@ extension GameConfiguration {
     
     func alertMessage(isSuccess: Bool) -> String {
         let successMessage = "Congrats! 🎉\n\(correctAttempts) correct answers!"
-        let failMessage = "Oh noo! 😵\n\(wrongAttempts) wrong attemps"
+        let failMessage = "Oh noo! 😵\n\(wrongAttempts) wrong attempts"
         return isSuccess ? successMessage : failMessage
     }
 }

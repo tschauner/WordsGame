@@ -35,6 +35,7 @@ protocol GameViewModelProtocol: ObservableObject {
     func isVisible(section: GameSection) -> Bool
     func isCorrect(choice: Choice) -> Bool
     func diceIndex()
+    func increaseIndex()
     func setup(withConfig config: GameConfiguration)
     func setup()
     func reset()
@@ -47,6 +48,7 @@ protocol GameViewModelProtocol: ObservableObject {
     func resetTimer()
     func checkIfGameFinished()
     func choiceSelected(_ choice: Choice)
+    func evaluate(_ choice: Choice)
 }
 
 extension GameViewModelProtocol {
@@ -85,7 +87,7 @@ extension GameViewModelProtocol {
     }
     
     func loadWords() {
-        guard let words: [WordPair] = config.getModel() else {
+        guard let words: [WordPair] = config.model else {
             assertionFailure("config file \(String(describing: config.fileName)) is not available")
             return
         }
@@ -113,7 +115,7 @@ extension GameViewModelProtocol {
         }
     }
     
-    private func evaluate(_ choice: Choice) {
+    func evaluate(_ choice: Choice) {
         if isCorrect(choice: choice) {
             correctAttempts += 1
         } else {
@@ -121,7 +123,7 @@ extension GameViewModelProtocol {
         }
     }
     
-    private func increaseIndex() {
+    func increaseIndex() {
         if currentIndex == words.count - 1 {
             currentIndex = 0
         } else {
